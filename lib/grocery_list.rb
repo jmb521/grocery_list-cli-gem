@@ -1,5 +1,4 @@
-require "grocery_list/version"
-
-module GroceryList
-  # Your code goes here...
-end
+require 'nokogiri'
+require 'pry'
+require_relative "./grocery_list/version"
+require_relative './grocery_list/cli.rb'

@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require './lib/grocery_list'
+
+GroceryList::CLI.new.call
