@@ -10,9 +10,12 @@ attr_accessor :store, :price, :final_price, :description, :coupon, :url
   end
 
 
-  def self.scrape(url)
-    html = open(url)
-    doc = Nokogiri::HTML(html)
-    binding.pry
+  def self.scrape_walmart
 
+    doc = Nokogiri::HTML(open("http://jillcataldo.com/coupon-matchups-jewel-osco-deals-of-the-week-72016-72616/"))
+    header = doc.css(".mbd_divider_title").text
+    content = doc.css(".mbd_coupons_item_content").text
+
+    binding.pry
+  end
 end
