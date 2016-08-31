@@ -20,7 +20,7 @@ attr_accessor :store, :price, :final_price, :description, :coupon, :url
       get_name = atext.split(" ")
       store.store = get_name[2]
       store.url = self.get_links.css("a").attribute("href").value
-      binding.pry
+      
 
     end
   end

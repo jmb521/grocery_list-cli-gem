@@ -16,7 +16,7 @@ class GroceryList::CLI
   #
   # end
   def store_list
-    #this will be subbed out for scraped data
+    this will be subbed out for scraped data
 
     puts <<-DOC
     1. Meijer
@@ -25,6 +25,7 @@ class GroceryList::CLI
     4. Kroger
     5. Target
     DOC
+
   end
 
   def menu
@@ -52,7 +53,7 @@ class GroceryList::CLI
         when "list"
           store_list
         else
-          puts "You have made an invalid selection. Please select one of the following"
+          puts "Please make a selection from the list or type exit"
 
         end
 
