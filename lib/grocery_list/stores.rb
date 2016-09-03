@@ -8,5 +8,6 @@ class GroceryList::Store
 
   def self.all
     @@all
+    binding.pry
   end
 end

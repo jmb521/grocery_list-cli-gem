@@ -16,15 +16,19 @@ class GroceryList::CLI
   #
   # end
   def store_list
-    this will be subbed out for scraped data
-
-    puts <<-DOC
-    1. Meijer
-    2. Jewel
-    3. Walmart
-    4. Kroger
-    5. Target
-    DOC
+    #this will be subbed out for scraped data
+    # 
+    # puts <<-DOC
+    # 1. Meijer
+    # 2. Jewel
+    # 3. Walmart
+    # 4. Kroger
+    # 5. Target
+    # DOC
+    @store = GroceryList::Store.all
+    @store.each_with_index(1) do |store_name|
+      puts store_name.store
+    end
 
   end
 

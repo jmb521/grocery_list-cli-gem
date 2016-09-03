@@ -13,6 +13,7 @@ class GroceryList::Item
     @quantity = quantity
     @@all <<self
   end
+  
 
   item_1 = self.new
   item_1.name = "Oscar Meyer Bacon"

@@ -5,14 +5,16 @@ attr_accessor :store, :price, :final_price, :description, :coupon, :url
 
   def self.get_links
     link = Nokogiri::HTML(open("http://jillcataldo.com/category/deals-of-the-week/"))
-  end
-
-  def self.get_stores
-    self.get_links.css(".entry-title")
+    the_stores = link.css("h2.entry-title").text
 
   end
+
+
   def self.each_store
-    self.get_stores.each do |store|
+    each_store = self.get_links.first
+    binding.pry
+
+    each_store.each do |store|
       store = GroceryList::Store.new
 
       atext = self.get_links.css("a").text
@@ -20,7 +22,7 @@ attr_accessor :store, :price, :final_price, :description, :coupon, :url
       get_name = atext.split(" ")
       store.store = get_name[2]
       store.url = self.get_links.css("a").attribute("href").value
-      
+
 
     end
   end
