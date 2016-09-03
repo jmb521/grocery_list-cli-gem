@@ -5,26 +5,34 @@ attr_accessor :store, :price, :final_price, :description, :coupon, :url
 
   def self.get_links
     link = Nokogiri::HTML(open("http://jillcataldo.com/category/deals-of-the-week/"))
-    the_stores = link.css("h2.entry-title").text
+    the_stores = link.css(".entry-title")
 
   end
 
 
   def self.each_store
-    each_store = self.get_links.first
-    binding.pry
-
+    each_store = self.get_links
+    s = []
     each_store.each do |store|
-      store = GroceryList::Store.new
-
-      atext = self.get_links.css("a").text
-      a = self.get_links.css("a")
-      get_name = atext.split(" ")
-      store.store = get_name[2]
-      store.url = self.get_links.css("a").attribute("href").value
-
-
+      individual_store = store.text.split
+      if individual_store[0] == "Coupon" && individual_store[1] == "Matchups:"
+        s << individual_store[2] unless s.include?(individual_store[2])
+      end
     end
+    s.each do |store|
+      store = GroceryList::Store.new
+    end
+
+
+
+      # atext = self.get_links.css("a").text
+      # a = self.get_links.css("a")
+      # get_name = atext.split(" ")
+      # store.store = get_name[2]
+      # store.url = self.get_links.css("a").attribute("href").value
+
+
+
   end
 
   def self.scrape_jewel

@@ -2,7 +2,8 @@ require 'pry'
 class GroceryList::Store
   attr_accessor :store, :url
   @@all = []
-  def initialize
+  def initialize(store)
+    @store = store
     @@all << self
   end
 
