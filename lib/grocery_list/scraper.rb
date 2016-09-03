@@ -12,25 +12,31 @@ attr_accessor :store, :price, :final_price, :description, :coupon, :url
 
   def self.each_store
     each_store = self.get_links
-    s = []
+    array = []
+    s = Hash.new
     each_store.each do |store|
       individual_store = store.text.split
       if individual_store[0] == "Coupon" && individual_store[1] == "Matchups:"
-        s << individual_store[2] unless s.include?(individual_store[2])
+        s[:name] = individual_store[2] unless s.include?(individual_store[2])
+        s[:url] = store.css("a").attribute("href").value
+        array << {:name => s[:name], :url => s[:url]}
       end
     end
-    s.each do |store|
-      store = GroceryList::Store.new
+    array.each do |value|
+      GroceryList::Store.new(value)
     end
 
+    # end
+    GroceryList::Store.all
 
-
-      # atext = self.get_links.css("a").text
-      # a = self.get_links.css("a")
-      # get_name = atext.split(" ")
-      # store.store = get_name[2]
-      # store.url = self.get_links.css("a").attribute("href").value
-
+    # GroceryList::Store.all.each do |store_url|
+    #   store.url = self.get_links.css("a").attribute("href").value
+    #   binding.pry
+    # end
+    #
+    # GroceryList::Store.all
+    #
+    #   binding.pry
 
 
   end

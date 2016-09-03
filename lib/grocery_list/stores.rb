@@ -2,8 +2,9 @@ require 'pry'
 class GroceryList::Store
   attr_accessor :store, :url
   @@all = []
-  def initialize(store)
-    @store = store
+  def initialize(store_hash)
+    @store = store_hash[:name]
+    @url = store_hash[:url]
     @@all << self
   end
 
