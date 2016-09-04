@@ -54,9 +54,25 @@ attr_accessor :store, :price, :final_price, :description, :coupon, :url
 
   def self.create_item
     scraped_item = self.scrape_items
+    item_hash = Hash.new
+    array = []
     scraped_item.each do |header, desc|
-      
-      binding.pry
+      #trying to figure out how to get the quantity data from the description when it is written as a word and not an integer string "four" vs "4"
+      split_header = header.split(" ")
+      split_desc = desc.split(" ")
+      split_header[0] = item_hash[:price]
+      split_header[1] = item_hash[:name]
+      split_desc.each do |each_desc|
+        binding.pry
+        if each_desc.include?("oz") || each_desc.include?("ct") || each_desc.include?("qt")
+          each_desc = item_hash[:size]
+        elsif each_desc.include?("one")
+
+        end
+
+      end
+      # array << {:name => item[:name], :url => s[:url]}
+      #:name, :price, :coupon, :coupon_amount, :minimum_required_for_coupon, :quantity
 
     end
 
