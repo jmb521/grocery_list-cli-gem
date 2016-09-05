@@ -16,19 +16,8 @@ class GroceryList::CLI
   #
   # end
   def store_list
-    #this will be subbed out for scraped data
-    # 
-    # puts <<-DOC
-    # 1. Meijer
-    # 2. Jewel
-    # 3. Walmart
-    # 4. Kroger
-    # 5. Target
-    # DOC
-    @store = GroceryList::Store.all
-    @store.each_with_index(1) do |store_name|
-      puts store_name.store
-    end
+
+    store = GroceryList::Store.all
 
   end
 
@@ -39,7 +28,10 @@ class GroceryList::CLI
       #greets user and asks which store they want.
         puts "Which store would you like to check?"
         puts "Enter a number or type exit"
-        store_list
+        store_list.each_with_index do |store_name, index|
+          index +=1
+          puts "#{index}. #{store_name.store}"
+        end
         input = gets.strip
         # after the menu I want to be able to enter a number for which store to get data from
         # then it will scrape that store and give me a list of products

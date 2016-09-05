@@ -1,5 +1,5 @@
 class GroceryList::Item
-  attr_accessor :name, :price, :coupon, :quantity, :size
+  attr_accessor :name, :price, :coupon, :quantity, :size, :store
   #gets the name of the item, the price, the coupon associated with it, the amount of the coupon, and then the price after the coupon has been
   #applied
   @@all = []
@@ -9,16 +9,20 @@ class GroceryList::Item
     @coupon = item_hash[:coupon]
     @quantity = item_hash[:quantity]
     @size = item_hash[:size]
+    @store = item_hash[:store]
     @@all <<self
   end
 
-
-  item_1 = self.new
-  item_1.name = "Oscar Meyer Bacon"
-  item_1.price = 4.99
-  item_1.coupon = ".50 off when you buy 2"
-  item_1.coupon_amount = 0.50
-  item_1.mimum_required_for_coupon = 2
-  item_1.total_price = 9.48
+  def self.all
+    @@all
+binding.pry
+  end
+  # item_1 = self.new
+  # item_1.name = "Oscar Meyer Bacon"
+  # item_1.price = 4.99
+  # item_1.coupon = ".50 off when you buy 2"
+  # item_1.coupon_amount = 0.50
+  # item_1.mimum_required_for_coupon = 2
+  # item_1.total_price = 9.48
 
 end
