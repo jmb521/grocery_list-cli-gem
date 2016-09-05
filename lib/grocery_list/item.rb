@@ -1,5 +1,5 @@
 class GroceryList::Item
-  attr_accessor :name, :price, :coupon, :coupon_amount, :minimum_required_for_coupon, :quantity, :size
+  attr_accessor :name, :price, :coupon, :quantity, :size
   #gets the name of the item, the price, the coupon associated with it, the amount of the coupon, and then the price after the coupon has been
   #applied
   @@all = []
@@ -7,8 +7,6 @@ class GroceryList::Item
     @name = item_hash[:name]
     @price = item_hash[:price]
     @coupon = item_hash[:coupon]
-    @coupon_amount = item_hash[:coupon_amount]
-    @minimum_required_for_coupon = item_hash[:minimum_required_for_coupon]
     @quantity = item_hash[:quantity]
     @size = item_hash[:size]
     @@all <<self
