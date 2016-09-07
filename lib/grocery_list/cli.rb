@@ -2,7 +2,7 @@ require 'pry'
 class GroceryList::CLI
 
   def call
-
+    store_list
     menu
   end
 
@@ -16,8 +16,11 @@ class GroceryList::CLI
   #
   # end
   def store_list
-
-    store = GroceryList::Store.all
+    @store = GroceryList::Store.each_store
+    @store.each_with_index do |store, index|
+      index +=1
+      puts "#{index}. #{store.name}"
+    end
 
   end
 
@@ -28,16 +31,13 @@ class GroceryList::CLI
       #greets user and asks which store they want.
         puts "Which store would you like to check?"
         puts "Enter a number or type exit"
-        store_list.each_with_index do |store_name, index|
-          index +=1
-          puts "#{index}. #{store_name.store}"
-        end
         input = gets.strip
         # after the menu I want to be able to enter a number for which store to get data from
         # then it will scrape that store and give me a list of products
         case input
         when "1"
           puts "Here is the list of products for Meijer"
+          binding.pry
         when "2"
           puts "Here are the products for Jewel"
         when "3"
