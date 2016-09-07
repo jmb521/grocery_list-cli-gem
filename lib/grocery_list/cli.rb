@@ -26,6 +26,7 @@ class GroceryList::CLI
 
   def menu
 
+
     input = nil
     while input != "exit"
       #greets user and asks which store they want.
@@ -36,16 +37,20 @@ class GroceryList::CLI
         # then it will scrape that store and give me a list of products
         case input
         when "1"
-          puts "Here is the list of products for Meijer"
-          binding.pry
+          puts "Here is the list of products for #{@store[0].name}"
+          GroceryList::Item.scrape_items(@store[0].url)
         when "2"
-          puts "Here are the products for Jewel"
+          puts "Here is the list of products for #{@store[1].name}"
+          GroceryList::Item.scrape_items(@store[1].url)
         when "3"
-          puts "here are the products for Walmart"
+          puts "Here is the list of products for #{@store[2].name}"
+          GroceryList::Item.scrape_items(@store[2].url)
         when "4"
-          puts "here are the products for Kroger"
+          puts "Here is the list of products for #{@store[3].name}"
+          GroceryList::Item.scrape_items(@store[3].url)
         when "5"
-          puts "Here are the products for Target"
+          puts "Here is the list of products for #{@store[4].name}"
+          GroceryList::Item.scrape_items(@store[4].url)
         when "list"
           store_list
         else
