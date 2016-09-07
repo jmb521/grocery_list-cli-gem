@@ -39,6 +39,7 @@ class GroceryList::CLI
         when "1"
           puts "Here is the list of products for #{@store[0].name}"
           GroceryList::Item.scrape_items(@store[0].url)
+          binding.pry
         when "2"
           puts "Here is the list of products for #{@store[1].name}"
           GroceryList::Item.scrape_items(@store[1].url)
