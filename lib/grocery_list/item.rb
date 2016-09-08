@@ -112,7 +112,7 @@ class GroceryList::Item
           when "twelve"
             new_item.quantity = 12
           else
-            new_item.quantity = num[2]
+            new_item.quantity = 1
           end #ends the case statement
         end #ends the if statement
       end #ends the split.desc loop
