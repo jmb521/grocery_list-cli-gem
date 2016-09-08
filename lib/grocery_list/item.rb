@@ -1,5 +1,5 @@
 class GroceryList::Item
-  attr_accessor :name, :price, :coupon, :quantity, :size, :store
+  attr_accessor :name, :price, :coupon, :quantity, :size
   #gets the name of the item, the price, the coupon associated with it, the amount of the coupon, and then the price after the coupon has been
   #applied
   # @@all = []
@@ -15,7 +15,7 @@ class GroceryList::Item
 
 #   def self.all
 #     @@all
-# binding.pry
+
 #   end
   # item_1 = self.new
   # item_1.name = "Oscar Meyer Bacon"
@@ -26,7 +26,7 @@ class GroceryList::Item
   # item_1.total_price = 9.48
 
 
-
+# "http://jillcataldo.com/coupon-matchups-jewel-osco-deals-of-the-week-9716-91316/"
   def self.scrape_items(store_url)
 
     #need to figure out how to get store name in the item hash.
@@ -53,16 +53,17 @@ class GroceryList::Item
 
   end
 
-  def self.create_item
-    scraped_item = self.scrape_items
+  def self.create_item(store_url)
+    scraped_item = self.scrape_items(store_url)
     # item_hash = Hash.new
     array = []
+    new_item = nil
     scraped_item.each do |header, desc|
       #trying to figure out how to get the quantity data from the description when it is written as a word and not an integer string "four" vs "4"
       # split_header = header.split(/.?[0-9].?/)
       new_item = self.new
-      new_item.name = header.match(/[a-zA-Z]+\s?\&?\s?[a-zA-Z]+[']?/)
 
+      new_item.name = header.match(/[a-zA-Z]+\s?\&?\s?[a-zA-Z]+[']?/)
       new_item.price = header.match(/[$\.\,][0-9]+/)
 
       split_desc = desc.split(/[\.]\W/)
@@ -117,6 +118,7 @@ class GroceryList::Item
       end #ends the split.desc loop
         # array << {:name => item_hash[:name], :price => item_hash[:price], :coupon => item_hash[:coupon], :quantity => item_hash[:quantity], :size => item_hash[:size]}
         array << new_item
+
     end #ends the scrape_items loop
 
     # array.each do |arr|

@@ -38,20 +38,24 @@ class GroceryList::CLI
         case input
         when "1"
           puts "Here is the list of products for #{@store[0].name}"
-          GroceryList::Item.scrape_items(@store[0].url)
-          binding.pry
+          item_list(@store[0].url)
+
+
         when "2"
           puts "Here is the list of products for #{@store[1].name}"
-          GroceryList::Item.scrape_items(@store[1].url)
+          # GroceryList::Item.scrape_items(@store[1].url)
+          item_list(@store[1].url)
         when "3"
           puts "Here is the list of products for #{@store[2].name}"
-          GroceryList::Item.scrape_items(@store[2].url)
+          # GroceryList::Item.scrape_items(@store[2].url)
+          item_list(@store[2].url)
         when "4"
           puts "Here is the list of products for #{@store[3].name}"
-          GroceryList::Item.scrape_items(@store[3].url)
+          item_list(@store[3].url)
         when "5"
           puts "Here is the list of products for #{@store[4].name}"
-          GroceryList::Item.scrape_items(@store[4].url)
+          # GroceryList::Item.scrape_items(@store[4].url)
+          item_list(@store[4].url)
         when "list"
           store_list
         else
@@ -59,6 +63,23 @@ class GroceryList::CLI
 
         end
 
+    end
+
+
+  end
+  def item_list(store_url)
+    @item = GroceryList::Item.create_item(store_url)
+
+    @item.each do |x|
+
+      puts "Product: #{x.name}"
+      puts "Size: #{x.size}"
+      puts "Price: #{x.price}"
+      puts "Coupon: #{x.coupon}"
+      puts "Minimum Quantity: #{x.quantity}"
+      puts "\n
+      ___________________________________
+      \n"
     end
 
 

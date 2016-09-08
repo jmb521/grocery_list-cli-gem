@@ -1,22 +1,6 @@
 require 'pry'
 class GroceryList::Store
   attr_accessor :name, :url
-  # @@all = []
-  # def initialize(store_hash)
-  #   @store = store_hash[:name]
-  #   @url = store_hash[:url]
-  #   @@all << self
-  # end
-  #
-  # def self.all
-  #   @@all
-  #
-  # end
-  # @@all.each do |store|
-  #   puts "#{store}"
-  # end
-  # binding.pry
-
 
   def self.get_links
     link = Nokogiri::HTML(open("http://jillcataldo.com/category/deals-of-the-week/"))
@@ -52,7 +36,7 @@ class GroceryList::Store
     #   GroceryList::Store.new(value)
     # end
     array
-    
+
   end
 
 end
