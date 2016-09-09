@@ -1,8 +1,15 @@
 # GroceryList
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/grocery_list`. To experiment with that code, run `bin/console` for an interactive prompt.
+Welcome to the GroceryList Gem
+This gem scrapes data from a popular couponing website www.jillcataldo.com
+The gem will give a list of the most recent sales by store name.
+Once you select a store, it will provide a list of the following:
 
-TODO: Delete this and the text above, and describe your gem
+1. The item name
+2. The item price
+3. The coupon associated with the item, if there is one.
+4. The size of the item, if applicable
+5. The quantity required to use the coupon.
 
 ## Installation
 
@@ -22,7 +29,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To use the program, start it by typing ruby bin/grocery_list
+From then you will see a choice of stores available based on which stores have current sales ads.
+Select the number corresponding to the store you wish to select.
+After reviewing the items for sale, you can select another store, see the list of stores or exit the gem.
 
 ## Development
 
@@ -33,4 +43,3 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/grocery_list.
-
