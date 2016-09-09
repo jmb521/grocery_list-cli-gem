@@ -31,7 +31,7 @@ class GroceryList::CLI
     while input != "exit"
       #greets user and asks which store they want.
         puts "Which store would you like to check?"
-        puts "Enter a number or type exit"
+        puts "Enter a number, type list for the Stores available or type exit"
         input = gets.strip
         # after the menu I want to be able to enter a number for which store to get data from
         # then it will scrape that store and give me a list of products
@@ -77,8 +77,7 @@ class GroceryList::CLI
       puts "Price: #{x.price}"
       puts "Coupon: #{x.coupon}"
       puts "Minimum Quantity: #{x.quantity}"
-      puts "\n
-      ___________________________________
+      puts " ___________________________________
       \n"
     end
 
