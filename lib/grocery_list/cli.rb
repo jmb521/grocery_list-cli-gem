@@ -58,8 +58,8 @@ class GroceryList::CLI
           item_list(@store[4].url)
         when "list"
           store_list
-        else
-          puts "Please make a selection from the list or type exit"
+        # else
+        #   puts "Please make a selection from the list or type exit"
 
         end
 
