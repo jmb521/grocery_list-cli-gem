@@ -1,5 +1,5 @@
 class GroceryList::Item
- attr_accessor :name, :price, :coupon, :minimum, :size
+ attr_accessor :name, :price, :coupon, :size #:quantity,
  #gets the name of the item, the price, the coupon associated with it, the amount of the coupon, and then the price after the coupon has been
  #applied
 
@@ -39,72 +39,68 @@ class GroceryList::Item
    scraped_item.each do |header, desc|
      #trying to figure out how to get the quantity data from the description when it is written as a word and not an integer string "four" vs "4"
      # split_header = header.split(/.?[0-9].?/)
+     item_qty = []
      new_item = self.new
      new_item.name = header.match(/(\b[0-9\-]*?[a-zA-Z\-']++\s?(.*))/)
+
      # new_item.name = header.match(/[0-9]?[a-zA-Z,&'-]+\s?/)
      new_item.price = header.match(/[$\.\,][0-9]+/)
      split_desc = desc.split(/[\.]\W/)
-    #  split_desc.each do |each_desc|
-    #    if each_desc.include?("oz") || each_desc.include?("ct") || each_desc.include?("qt") || each_desc.include?("pack")
-    #    item_size = each_desc.match(/([0-9]+.?[0-9]?\-?[0-9]?+.?[0-9]?[oz]+|[0-9]+[ct]+|[0-9][pack]+|[0-9]+.?[0-9][qt]+)/)
-    #      new_item.size = item_size
-    #    end
-    #  end
-     split_desc.map do |each_desc|
-       if each_desc.include?("buy")
-
-         num = each_desc.split(/(buy)\s/)
-         split_num = num[2].split(" ")
-         case split_num[0]
-         when "one", "1"
-           item_quantity = "1"
-         when "two", "2"
-           item_quantity = "2"
-         when "three", "3"
-           item_quantity = "3"
-         when "four", "4"
-           item_quantity = "4"
-         when "five", "5"
-           item_quantity = "5"
-         when "six", "6"
-           item_quantity = "6"
-         when "seven", "7"
-           item_quantity = "7"
-         when "eight", "8"
-           item_quantity = "8"
-         when "nine", "9"
-           item_quantity = 9
-         when "ten", "10"
-           item_quantity = 10
-         when "eleven", "11"
-           item_quantity = 11
-         when "twelve", "12"
-           item_quantity = 12
-         else
-           item_quantity = 1
-         end #ends the case statement
-
-         new_item.quantity = item_quantity
-
-         binding.pry
+    #  item_quantity = 0
+     split_desc.each do |each_desc|
+       if each_desc.include?("oz") || each_desc.include?("ct") || each_desc.include?("qt") || each_desc.include?("pack")
+       item_size = each_desc.match(/([0-9]+.?[0-9]?\-?[0-9]?+.?[0-9]?[oz]+|[0-9]+[ct]+|[0-9][pack]+|[0-9]+.?[0-9][qt]+)/)
+         new_item.size = item_size
        end
-       new_item
+       if each_desc.include?("SS") || each_desc.include?("RP")
+           new_item.coupon = each_desc
+       else
+           new_item.coupon = "Sale only - no coupon available"
 
-     end
-    #  split_desc.each do |each_desc|
-    #    if each_desc.include?("SS") || each_desc.include?("RP")
-    #        new_item.coupon = each_desc
-    #    else
-    #        new_item.coupon = "Sale only - no coupon available"
-     #
-    #    end
-    #    #ends the if statement
-     #
-    #  end #ends the split.desc loop
-     array << new_item
+       end
 
-     array
+      #  if each_desc.include?("buy")
+       #
+      #    num = each_desc.split(/(buy)\s/)
+      #    split_num = num[2].split(" ")
+      #    case split_num[0]
+      #    when "one", "1"
+      #      item_quantity = 1
+      #    when "two", "2"
+      #      item_quantity = 2
+      #    when "three", "3"
+      #      item_quantity = 3
+      #    when "four", "4"
+      #      item_quantity = 4
+      #    when "five", "5"
+      #      item_quantity = 5
+      #    when "six", "6"
+      #      item_quantity = 6
+      #    when "seven", "7"
+      #      item_quantity = 7
+      #    when "eight", "8"
+      #      item_quantity = 8
+      #    when "nine", "9"
+      #      item_quantity = 9
+      #    when "ten", "10"
+      #      item_quantity = 10
+      #    when "eleven", "11"
+      #      item_quantity = 11
+      #    when "twelve", "12"
+      #      item_quantity = 12
+      #    else
+      #      item_quantity = 1
+      #    end #ends the case statement
+       #
+      #    new_item.quantity = item_quantity
+      #
+      #  end #if statement
+      #  new_item.quantity = item_quantity
+    end #ends the split.desc loop
+    array << new_item
+
    end #ends the scrape_items loop
    array
+
  end#ends the def self.create_item method
 end

@@ -76,7 +76,7 @@ class GroceryList::CLI
       puts "Size: #{x.size}"
       puts "Price: #{x.price}"
       puts "Coupon: #{x.coupon}"
-      puts "Minimum Quantity: #{x.quantity}"
+      # puts "Minimum Quantity: #{x.quantity}"
       puts " ___________________________________
       \n"
     end
