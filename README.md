@@ -9,7 +9,7 @@ Once you select a store, it will provide a list of the following:
 2. The item price
 3. The coupon associated with the item, if there is one.
 4. The size of the item, if applicable
-5. The quantity required to use the coupon.
+
 
 ## Installation
 
