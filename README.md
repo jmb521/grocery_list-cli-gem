@@ -16,7 +16,7 @@ Once you select a store, it will provide a list of the following:
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'grocery_list'
+gem 'grocery_list1'
 ```
 
 And then execute:
@@ -25,11 +25,11 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install grocery_list
+    $ gem install grocery_list1
 
 ## Usage
 
-To use the program, start it by typing ruby bin/grocery_list
+To use the program, start it by typing grocery_list
 From then you will see a choice of stores available based on which stores have current sales ads.
 Select the number corresponding to the store you wish to select.
 After reviewing the items for sale, you can select another store, see the list of stores or exit the gem.
