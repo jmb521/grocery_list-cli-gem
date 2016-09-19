@@ -16,8 +16,9 @@ class GroceryList::CLI
   #
   # end
   def store_list
-    @store = GroceryList::Store.each_store
-    @store.each_with_index do |store, index|
+    GroceryList::Store.scrape_stores
+    @stores = GroceryList::Store.all
+    @stores.each_with_index do |store, index|
       index +=1
       puts "#{index}. #{store.name}"
     end
@@ -37,25 +38,25 @@ class GroceryList::CLI
         # then it will scrape that store and give me a list of products
         case input
         when "1"
-          puts "Here is the list of products for #{@store[0].name}"
-          item_list(@store[0].url)
+          puts "Here is the list of products for #{@stores[0].name}"
+          item_list(@stores[0].url)
 
 
         when "2"
-          puts "Here is the list of products for #{@store[1].name}"
-          # GroceryList::Item.scrape_items(@store[1].url)
-          item_list(@store[1].url)
+          puts "Here is the list of products for #{@stores[1].name}"
+          # GroceryList::Item.scrape_items(@stores[1].url)
+          item_list(@stores[1].url)
         when "3"
-          puts "Here is the list of products for #{@store[2].name}"
-          # GroceryList::Item.scrape_items(@store[2].url)
-          item_list(@store[2].url)
+          puts "Here is the list of products for #{@stores[2].name}"
+          # GroceryList::Item.scrape_items(@stores[2].url)
+          item_list(@stores[2].url)
         when "4"
-          puts "Here is the list of products for #{@store[3].name}"
-          item_list(@store[3].url)
+          puts "Here is the list of products for #{@stores[3].name}"
+          item_list(@stores[3].url)
         when "5"
-          puts "Here is the list of products for #{@store[4].name}"
-          # GroceryList::Item.scrape_items(@store[4].url)
-          item_list(@store[4].url)
+          puts "Here is the list of products for #{@stores[4].name}"
+          # GroceryList::Item.scrape_items(@stores[4].url)
+          item_list(@stores[4].url)
         when "list"
           store_list
         # else

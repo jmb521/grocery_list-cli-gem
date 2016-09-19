@@ -37,7 +37,7 @@ class GroceryList::Item
    array = []
 
    scraped_item.each do |header, desc|
-     #trying to figure out how to get the quantity data from the description when it is written as a word and not an integer string "four" vs "4"
+     # trying to figure out how to get the quantity data from the description when it is written as a word and not an integer string "four" vs "4"
      # split_header = header.split(/.?[0-9].?/)
      item_qty = []
      new_item = self.new

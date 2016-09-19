@@ -1,42 +1,32 @@
 require 'pry'
+
 class GroceryList::Store
   attr_accessor :name, :url
+  @@all = []
 
-  def self.get_links
-    link = Nokogiri::HTML(open("http://jillcataldo.com/category/deals-of-the-week/"))
-    the_stores = link.css(".entry-title")
-
+  def self.all
+    @@all
   end
-  def self.each_store
-    each_store = self.get_links
-    array = []
-    # s = Hash.new
-    the_store = nil
 
-    each_store.each do |store|
-
-      individual_store = store.text.split
-
-      if individual_store[0] == "Coupon" && individual_store[1] == "Matchups:"
-        the_store = self.new
-        the_store.name = individual_store[2]
-        # unless scrape_stores.include?(individual_store[2])
-        # unless the_store.include?(individual_store[2])
-        the_store.url = store.css("a").attribute("href").value
-        # array << {:name => s[:name], :url => s[:url]}
-      end
-      check_array = array.all?{|x| x.name != the_store.name}
-
-        if check_array
-          array << the_store
-        end
-
+  def initialize(attributes)
+    @name = attributes[:name]
+    @url = attributes[:url]
+    if @@all.all?{|x| x.name != attributes[:name]}
+      @@all << self
     end
+  end
 
-    #   GroceryList::Store.new(value)
-    # end
-    array
-
+  def self.scrape_stores
+    stores = Nokogiri::HTML(open("http://jillcataldo.com/category/deals-of-the-week/")).css(".entry-title")
+    stores.each do |store|
+      individual_store = store.text.split
+      if individual_store[0] == "Coupon" && individual_store[1] == "Matchups:"
+        self.new({
+          name: individual_store[2],
+          url: store.css("a").attribute("href").value
+        })
+      end
+    end
   end
 
 end

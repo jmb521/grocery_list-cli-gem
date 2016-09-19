@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require './lib/grocery_list'
+require_relative '../lib/grocery_list'
 
 GroceryList::CLI.new.call
