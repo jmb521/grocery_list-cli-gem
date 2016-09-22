@@ -39,24 +39,24 @@ class GroceryList::CLI
         case input
         when "1"
           puts "Here is the list of products for #{@stores[0].name}"
-          item_list(@stores[0].url)
+          item_list(@stores[0])
 
 
         when "2"
           puts "Here is the list of products for #{@stores[1].name}"
           # GroceryList::Item.scrape_items(@stores[1].url)
-          item_list(@stores[1].url)
+          item_list(@stores[1])
         when "3"
           puts "Here is the list of products for #{@stores[2].name}"
           # GroceryList::Item.scrape_items(@stores[2].url)
-          item_list(@stores[2].url)
+          item_list(@stores[2])
         when "4"
           puts "Here is the list of products for #{@stores[3].name}"
-          item_list(@stores[3].url)
+          item_list(@stores[3])
         when "5"
           puts "Here is the list of products for #{@stores[4].name}"
           # GroceryList::Item.scrape_items(@stores[4].url)
-          item_list(@stores[4].url)
+          item_list(@stores[4])
         when "list"
           store_list
         # else
@@ -70,10 +70,10 @@ class GroceryList::CLI
   end
   def item_list(store_url)
     @item = GroceryList::Item.create_item(store_url)
+    binding.pry
 
     @item.each do |x|
-
-      puts "Product: #{x.name}"
+      puts "Product: #{x.item_name}"
       puts "Size: #{x.size}"
       puts "Price: #{x.price}"
       puts "Coupon: #{x.coupon}"
