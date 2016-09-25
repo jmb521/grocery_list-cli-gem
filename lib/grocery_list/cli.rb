@@ -63,33 +63,20 @@ class GroceryList::CLI
         #   puts "Please make a selection from the list or type exit"
 
         end
-
     end
-
-
   end
   def item_list(store_obj)
-    @store = store_obj
+    GroceryList::Item.scrape_items(store_obj)
     @item = GroceryList::Item.all
-    binding.pry
+    @item.each do |x|
+       puts "Product: #{x.name}"
+       puts "Size: #{x.size}"
+       puts "Price: #{x.price}"
+       puts "Coupon: #{x.coupon}"
+       
+       puts " ___________________________________
+       \n"
 
-
+    end
   end
-  # def item_list(store_url)
-  #   @item = GroceryList::Item.create_item(store_url)
-  #
-  #
-  #   @item.each do |x|
-  #     puts "Product: #{x.item_name}"
-  #     puts "Size: #{x.size}"
-  #     puts "Price: #{x.price}"
-  #     puts "Coupon: #{x.coupon}"
-  #     # puts "Minimum Quantity: #{x.quantity}"
-  #     puts " ___________________________________
-  #     \n"
-  #   end
-  #
-  #
-  # end
-
 end
